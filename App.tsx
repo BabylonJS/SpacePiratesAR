@@ -66,7 +66,7 @@ const EngineScreen: FunctionComponent<ViewProps> = (props: ViewProps) => {
     if (engine) {
       const scene = new Scene(engine);
       setScene(scene);
-      engine.setHardwareScalingLevel(3);
+      engine.setHardwareScalingLevel(window.devicePixelRatio);
 
       console.disableYellowBox = true;
 
@@ -83,26 +83,21 @@ const EngineScreen: FunctionComponent<ViewProps> = (props: ViewProps) => {
       setRootNode(rootNode);
 
       // lighting
-    const dirLight = new DirectionalLight("dirLight", new Vector3(0.47, 0.0, -0.86), scene);
-    dirLight.diffuse = Color3.FromInts(255, 251, 199);
-    dirLight.intensity = 3;
+      const dirLight = new DirectionalLight("dirLight", new Vector3(0.47, 0.0, -0.86), scene);
+      dirLight.diffuse = Color3.FromInts(255, 251, 199);
+      dirLight.intensity = 3;
 
-
-    var light = new HemisphericLight("light", new Vector3(0.47, 0.0, -0.86), scene);
-    light.intensity = 0.5;
-
-    // envirronment
-    /*
-    const envUri = resolveAssetSource(require('./assets/environment.env')).uri;
-    var envCube = CubeTexture.CreateFromPrefilteredData(envUri, scene);
-    envCube.name = "environment";
-    envCube.gammaSpace = false;
-    envCube.rotationY = 1.977;
-    scene.environmentTexture = envCube;
-    */
-    // glow
-    const glowLayer = new GlowLayer("glowLayer", scene);
-    glowLayer.intensity = 0.5;
+      // envirronment
+      const envUri = resolveAssetSource(require('./assets/environment.env')).uri;
+      var envCube = CubeTexture.CreateFromPrefilteredData(envUri, scene, ".env");
+      envCube.name = "environment";
+      envCube.gammaSpace = false;
+      envCube.rotationY = 1.977;
+      scene.environmentTexture = envCube;
+      
+      // glow
+      const glowLayer = new GlowLayer("glowLayer", scene);
+      glowLayer.intensity = 0.5;
 
       const sceneGLBUri = resolveAssetSource(require('./assets/nativeStaticScene.glb')).uri;
       SceneLoader.AppendAsync("", sceneGLBUri, scene).then(() => {
