@@ -28,7 +28,7 @@ Follow the instructions on React Native's documentation for setting up your deve
 You can download source code archives from [GitHub](https://github.com/SergioRZMasson/BabylonReactNative-GetStarted) or use ```git``` to clone the repository.
 
 ```
-> git clone ___FINALREPO_URL___
+> git clone https://github.com/BabylonJS/SpacePiratesAR.git
 ```
 
 ## 3. Project setup
@@ -36,7 +36,7 @@ You can download source code archives from [GitHub](https://github.com/SergioRZM
 From your projects folder restore the npm packages by running:
 
 ```
-cd __REPO_FOLDER__
+cd SpacePiratesAR
 npm install
 ```
 
